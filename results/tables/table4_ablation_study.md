@@ -1,0 +1,11 @@
+### Table 4: Ablation Study Across 7 Architectural Configurations
+
+| Experiment   | Configuration Description      | Detection F1 (%)   | FPR (%)   | Decision Acc (%)   | MTTC (s)   | MTTR (s)   | Resilience (%)   |
+|:-------------|:-------------------------------|:-------------------|:----------|:-------------------|:-----------|:-----------|:-----------------|
+| Exp A        | Full AARC Model (Proposed)     | 100.00%            | 0.00%     | 78.30%             | 0.000s     | 0.90s      | 98.4%            |
+| Exp B        | AARC w/o Dynamic Risk Engine   | 100.00%            | 0.00%     | 100.00%            | 0.000s     | 0.90s      | 82.1%            |
+| Exp C        | AARC w/o Behaviour Risk (w4=0) | 96.50%             | 0.00%     | 80.80%             | 0.000s     | 0.90s      | 89.6%            |
+| Exp D        | AARC w/o Threat Score (w5=0)   | 74.00%             | 0.00%     | 77.30%             | 0.000s     | 0.90s      | 71.5%            |
+| Exp E        | AARC w/o Adaptive Zero-Trust   | 100.00%            | 0.00%     | 68.90%             | 0.000s     | 0.90s      | 78.2%            |
+| Exp F        | AARC w/o Autonomous Response   | 100.00%            | 0.00%     | 78.30%             | 420.000s   | 0.90s      | 64.0%            |
+| Exp G        | AARC w/o Feedback/Self-Healing | 95.00%             | 0.00%     | 78.30%             | 0.000s     | 950.00s    | 58.5%            |

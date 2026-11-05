@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AARC - Adaptive Autonomous Resilient Cloud Security Console</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom SOC CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+
+    <!-- ========================================================= -->
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <!-- ========================================================= -->
+    <aside class="app-sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon-box">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+                <div class="brand-text-main">AARC CONSOLE</div>
+                <div class="brand-text-sub">Cloud Cyber Defense</div>
+            </div>
+        </div>
+
+        <div class="sidebar-nav-container">
+            <div class="nav-category-title">Operations</div>
+            <button class="sidebar-link active" data-view="view-overview" id="nav-overview">
+                <i class="fa-solid fa-gauge-high text-primary"></i>
+                <span>Operations Overview</span>
+            </button>
+            <button class="sidebar-link" data-view="view-users" id="nav-users">
+                <i class="fa-solid fa-user-shield text-info"></i>
+                <span>Users & Access</span>
+            </button>
+
+            <div class="nav-category-title">AARC Architecture</div>
+            <button class="sidebar-link" data-view="view-threats" id="nav-threats">
+                <i class="fa-solid fa-robot text-danger"></i>
+                <span>Threat Detection</span>
+            </button>
+            <button class="sidebar-link" data-view="view-risk" id="nav-risk">
+                <i class="fa-solid fa-scale-balanced text-warning"></i>
+                <span>Adaptive Risk Engine</span>
+            </button>
+            <button class="sidebar-link" data-view="view-zerotrust" id="nav-zerotrust">
+                <i class="fa-solid fa-door-open text-success"></i>
+                <span>Zero-Trust Access</span>
+            </button>
+            <button class="sidebar-link" data-view="view-response" id="nav-response">
+                <i class="fa-solid fa-hand-holding-hand text-danger"></i>
+                <span>Response & Safety</span>
+                <span class="badge-counter d-none" id="sidebar-approvals-badge">0</span>
+            </button>
+            <button class="sidebar-link" data-view="view-healing" id="nav-healing">
+                <i class="fa-solid fa-heart-pulse text-success"></i>
+                <span>Self-Healing & Resilience</span>
+            </button>
+
+            <div class="nav-category-title">Research & Evaluation</div>
+            <button class="sidebar-link" data-view="view-research" id="nav-research">
+                <i class="fa-solid fa-flask-vial text-info"></i>
+                <span>Scenarios & Papers</span>
+            </button>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-muted extra-small">Telemetry Mesh:</span>
+                <span class="text-success extra-small fw-bold"><span class="status-dot green me-1"></span> Live Active</span>
+            </div>
+            <div class="text-dim extra-small">AARC Adaptive Research Prototype</div>
+        </div>
+    </aside>
+
+    <!-- ========================================================= -->
+    <!-- MAIN WORKSPACE -->
+    <!-- ========================================================= -->
+    <main class="app-main">
+        <!-- Top Navigation Header -->
+        <header class="app-topbar">
+            <div class="topbar-heading-title">
+                <i class="fa-solid fa-layer-group text-muted"></i>
+                <span id="topbar-title-text">Operations Overview</span>
+            </div>
+            <div class="topbar-right-actions">
+                <!-- Active Demo User Context Indicator -->
+                <div class="d-flex align-items-center gap-2 px-3 py-1 bg-dark rounded border border-secondary border-opacity-25">
+                    <span class="text-muted extra-small">Active User:</span>
+                    <span class="fw-bold text-light font-mono small" id="topbar-active-user-name">Carol Danvers (Admin)</span>
+                    <span class="badge-soc safe ms-1" id="topbar-active-user-badge">ALLOW</span>
+                </div>
+                <!-- Quick Simulate Action Button -->
+                <button class="soc-btn soc-btn-primary soc-btn-sm" id="btn-topbar-simulate">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Simulate Active User</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- View Content Body Container -->
+        <div class="view-content-container">
+
+            <!-- ========================================================= -->
+            <!-- 1. OPERATIONS OVERVIEW SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view active" id="view-overview">
+                <!-- Top KPI Metric Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon safe">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">System Health</div>
+                                <div class="stat-widget-value text-success">ONLINE</div>
+                                <div class="stat-widget-subtext">5/5 Services Operational</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon danger">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Active Threats</div>
+                                <div class="stat-widget-value" id="kpi-threats-count">0</div>
+                                <div class="stat-widget-subtext">Past 50 Telemetry Ingestions</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon warn">
+                                <i class="fa-solid fa-users-viewfinder"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">High-Risk Users</div>
+                                <div class="stat-widget-value" id="kpi-high-risk-users">0</div>
+                                <div class="stat-widget-subtext">Risk Score R &ge; 0.60</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon info">
+                                <i class="fa-solid fa-user-clock"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Pending Approvals</div>
+                                <div class="stat-widget-value text-info" id="kpi-pending-approvals">0</div>
+                                <div class="stat-widget-subtext">Safety Plane Interpositions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 Demo Users Status Grid -->
+                <div class="soc-card mb-4">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-users text-primary"></i>
+                            <span>Enterprise Demo Users & Live Zero-Trust Access State</span>
+                        </div>
+                        <button class="soc-btn soc-btn-outline soc-btn-sm" id="btn-overview-manage-users">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <span>Edit Context in Users & Access</span>
+                        </button>
+                    </div>
+                    <div class="soc-card-body p-0">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Role & Department</th>
+                                    <th>Device Trust</th>
+                                    <th>Threat Score (T)</th>
+                                    <th>Dynamic Risk (R)</th>
+                                    <th>Zero-Trust Tier</th>
+                                    <th>Effective Permissions</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="overview-users-tbody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Monitored Cloud Services -->
+                    <div class="col-md-6">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-cloud text-info"></i>
+                                    <span>Monitored Cloud Services Topology</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body p-0">
+                                <table class="soc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service</th>
+                                            <th>Virtual IP</th>
+                                            <th>Instances</th>
+                                            <th>State</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="overview-services-tbody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Security Telemetry Stream -->
+                    <div class="col-md-6">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-network-wired text-warning"></i>
+                                    <span>Recent Ingested Security Telemetry</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body p-0" style="max-height: 280px; overflow-y: auto;">
+                                <table class="soc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Subject / Source</th>
+                                            <th>Classification</th>
+                                            <th>Observed Activity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="overview-events-tbody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Real AWS EC2 Resources -->
+            <div class="soc-card mt-4">
+                <div class="soc-card-header">
+                    <div class="soc-card-title">
+                        <i class="fa-brands fa-aws text-warning"></i>
+                        <span>Live AWS EC2 Resources</span>
+                    </div>
+                    <span class="badge-soc info" id="aws-connection-status">
+                        CONNECTING
+                    </span>
+                </div>
+                <div class="soc-card-body">
+                    <p class="text-muted small">
+                        Source: AWS EC2 API · Region: ap-south-1
+                    </p>
+                    <div class="table-responsive">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Instance Name</th>
+                                    <th>Instance ID</th>
+                                    <th>Type</th>
+                                    <th>State</th>
+                                    <th>Availability Zone</th>
+                                </tr>
+                            </thead>
+                            <tbody id="aws-instances-tbody">
+                                <tr>
+                                    <td colspan="5" class="text-muted">
+                                        Loading AWS resources...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Real AWS CloudTrail Activity -->
+            <div class="soc-card mt-4">
+                <div class="soc-card-header">
+                    <div class="soc-card-title">
+                        <i class="fa-solid fa-clock-rotate-left text-info"></i>
+                        <span>Real AWS CloudTrail Activity</span>
+                    </div>
+                    <span class="badge-soc info" id="cloudtrail-status">
+                        CONNECTING
+                    </span>
+                </div>
+                <div class="soc-card-body">
+                    <p class="text-muted small">
+                        Source: AWS CloudTrail Event History · Region: ap-south-1
+                    </p>
+                    <div class="table-responsive"
+                         style="max-height: 320px; overflow-y: auto;">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp (UTC)</th>
+                                    <th>Event</th>
+                                    <th>Service</th>
+                                    <th>User / Principal</th>
+                                    <th>Risk</th>
+                                    <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cloudtrail-events-tbody">
+                                <tr>
+                                    <td colspan="6" class="text-muted">
+                                        Loading real AWS activity...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 2. USERS & ACCESS MANAGEMENT SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-users">
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold text-light mb-1">Users & Access Management</h5>
+                        <p class="text-muted small mb-0">
+                            Modify real-time user security context attributes to demonstrate how AARC autonomously adapts threat scoring, risk weighting, and effective access permissions.
+                        </p>
+                    </div>
+                    <button class="soc-btn soc-btn-outline soc-btn-sm" id="btn-reset-all-users">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Reset All 5 Users to Baseline</span>
+                    </button>
+                </div>
+
+                <!-- 5 User Selectable Tab Cards -->
+                <div class="user-selector-grid" id="user-selection-cards">
+                    <!-- Populated dynamically by JS -->
+                </div>
+
+                <div class="row g-4">
+                    <!-- Left: Configurable Security Context Form -->
+                    <div class="col-lg-7">
+                        <div class="soc-card">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-sliders text-info"></i>
+                                    <span>Configurable Security Context Profile</span>
+                                </div>
+                                <span class="badge-soc info font-mono" id="form-selected-user-id">usr_admin_carol</span>
+                            </div>
+                            <div class="soc-card-body">
+                                <!-- Demo Presets -->
+                                <div class="mb-3">
+                                    <span class="soc-label">Quick Demonstration Presets:</span>
+                                    <div class="preset-btn-group">
+                                        <button class="preset-chip" data-preset="normal"><i class="fa-solid fa-check text-success me-1"></i> Normal Baseline</button>
+                                        <button class="preset-chip" data-preset="auth-probes"><i class="fa-solid fa-key text-warning me-1"></i> Auth Probes (8 Failed Logins)</button>
+                                        <button class="preset-chip" data-preset="ddos-flood"><i class="fa-solid fa-bolt text-danger me-1"></i> DDoS SYN Flood Burst</button>
+                                        <button class="preset-chip" data-preset="data-exfil"><i class="fa-solid fa-database text-danger me-1"></i> SQLi / Mass Data Exfil</button>
+                                        <button class="preset-chip" data-preset="compromised-device"><i class="fa-solid fa-laptop-code text-warning me-1"></i> Low Device Trust (0.25)</button>
+                                    </div>
+                                </div>
+
+                                <form id="user-context-form">
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="soc-label">User Display Name</label>
+                                            <input type="text" class="soc-input" id="input-user-name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Role</label>
+                                            <select class="soc-select" id="input-user-role">
+                                                <option value="Developer">Developer</option>
+                                                <option value="Data Analyst">Data Analyst</option>
+                                                <option value="Cloud Admin">Cloud Admin</option>
+                                                <option value="External Contractor">External Contractor</option>
+                                                <option value="Guest / Anonymous">Guest / Anonymous</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Device Trust Score (0.00 – 1.00)</label>
+                                            <div class="soc-slider-container">
+                                                <input type="range" class="soc-range" id="range-device-trust" min="0" max="1" step="0.01" value="0.95">
+                                                <span class="slider-val-badge" id="val-device-trust">0.95</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Failed Login Attempts</label>
+                                            <div class="soc-slider-container">
+                                                <input type="number" class="soc-input" id="input-failed-logins" min="0" max="50" value="0">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Request Frequency (req/sec)</label>
+                                            <div class="soc-slider-container">
+                                                <input type="range" class="soc-range" id="range-req-freq" min="0.5" max="300" step="0.5" value="2.0">
+                                                <span class="slider-val-badge" id="val-req-freq">2.0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="soc-label">API Requests Count</label>
+                                            <input type="number" class="soc-input" id="input-api-requests" min="0" max="500" value="10">
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Data Transferred (MB)</label>
+                                            <input type="number" class="soc-input" id="input-data-mb" min="0.1" max="1000" step="0.5" value="2.5">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="soc-label">SYN Flag Count (Network Flow)</label>
+                                            <input type="number" class="soc-input" id="input-syn-flags" min="0" max="800" value="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Target Cloud Microservice</label>
+                                            <select class="soc-select" id="input-target-service">
+                                                <option value="Authentication Microservice">Authentication Microservice (svc-auth)</option>
+                                                <option value="API Gateway">API Gateway (svc-api)</option>
+                                                <option value="Payment Processing Engine">Payment Processing Engine (svc-pay)</option>
+                                                <option value="Cloud SQL Database Cluster">Cloud SQL Database Cluster (svc-db)</option>
+                                                <option value="Object Storage Service">Object Storage Service (svc-storage)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="soc-label">Session Duration (min)</label>
+                                            <input type="number" class="soc-input" id="input-session-min" min="1" max="300" value="45">
+                                        </div>
+                                    </div>
+
+                                    <!-- Baseline Assigned Permissions Selection -->
+                                    <div class="mb-4">
+                                        <label class="soc-label mb-2">Role Baseline Assigned Permissions:</label>
+                                        <div class="row g-2" id="form-assigned-permissions-container">
+                                            <!-- Checkboxes populated dynamically -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="d-flex gap-3">
+                                        <button type="button" class="soc-btn soc-btn-primary flex-grow-1 py-2" id="btn-simulate-user-activity">
+                                            <i class="fa-solid fa-bolt"></i>
+                                            <span>SIMULATE ACTIVITY & APPLY SECURITY CONTEXT</span>
+                                        </button>
+                                        <button type="button" class="soc-btn soc-btn-outline" id="btn-reset-selected-user">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                            <span>Reset to Baseline</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Dynamic Access Evaluation & Effective Permissions Matrix -->
+                    <div class="col-lg-5">
+                        <!-- Live Evaluation Outcome Banner -->
+                        <div class="soc-card mb-3">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-shield-halved text-success"></i>
+                                    <span>Live Zero-Trust Evaluation State</span>
+                                </div>
+                                <span class="badge-soc safe" id="users-access-decision-badge">ALLOW</span>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <div class="text-muted extra-small">THREAT SCORE</div>
+                                        <div class="fw-bold font-mono fs-5 text-info" id="users-threat-score-val">0.05</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-muted extra-small">ADAPTED RISK (R)</div>
+                                        <div class="fw-bold font-mono fs-5 text-warning" id="users-risk-score-val">0.05</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-muted extra-small">ACCESS TIER</div>
+                                        <div class="fw-bold font-mono fs-6 text-success" id="users-tier-text">ALLOW</div>
+                                    </div>
+                                </div>
+                                <div class="bg-dark p-2 rounded border border-secondary border-opacity-25 small mb-2" id="users-eval-explanation">
+                                    Risk is within safe baseline. Full access granted to authorized cloud resources.
+                                </div>
+                                <div class="d-flex justify-content-between extra-small text-muted">
+                                    <span>Active Policy Context: <b class="text-light" id="users-policy-context-text">Normal Enterprise Activity</b></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assigned vs Effective Permissions Table -->
+                        <div class="soc-card">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-table-list text-primary"></i>
+                                    <span>Assigned vs Effective Permissions</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body p-0">
+                                <table class="soc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Permission</th>
+                                            <th>Assigned</th>
+                                            <th>Effective Posture</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="users-effective-permissions-tbody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="soc-card-footer d-flex justify-content-between align-items-center">
+                                <span class="extra-small text-muted">Zero-Trust dynamic policy enforcement</span>
+                                <button class="soc-btn soc-btn-outline soc-btn-sm" id="btn-jump-to-adaptive-risk">
+                                    <span>Inspect Adaptive Risk Weights</span>
+                                    <i class="fa-solid fa-arrow-right ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 3. THREAT DETECTION SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-threats">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Module 2: AI-Based Threat Detection</h5>
+                    <p class="text-muted small mb-0">
+                        Dual AI threat detection architecture combining a supervised <b>Random Forest Classifier</b> for multi-class classification and an unsupervised <b>Isolation Forest</b> for anomaly and zero-day detection.
+                    </p>
+                </div>
+
+                <!-- Subject Context Bar -->
+                <div class="soc-card mb-4">
+                    <div class="soc-card-body py-2 px-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <span class="text-muted extra-small">EVALUATED SUBJECT:</span>
+                            <span class="fw-bold text-light ms-1" id="threats-view-user-name">Carol Danvers (Cloud Admin)</span>
+                            <span class="text-muted extra-small ms-2">IP:</span>
+                            <span class="font-mono text-info ms-1" id="threats-view-src-ip">10.0.1.2</span>
+                        </div>
+                        <div>
+                            <span class="text-muted extra-small">TARGET SERVICE:</span>
+                            <span class="text-light ms-1" id="threats-view-target-svc">Authentication Microservice</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core AI Detection Metrics Grid -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon danger" id="threats-class-icon">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Predicted Threat Class</div>
+                                <div class="stat-widget-value text-success" id="threats-predicted-class">BENIGN</div>
+                                <div class="stat-widget-subtext">Random Forest Output</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon info">
+                                <i class="fa-solid fa-calculator"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Continuous Threat Score (T)</div>
+                                <div class="stat-widget-value font-mono text-info" id="threats-score-val">0.05</div>
+                                <div class="stat-widget-subtext">Formula: T &isin; [0.00, 1.00]</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon safe">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Model Confidence</div>
+                                <div class="stat-widget-value font-mono text-success" id="threats-confidence-val">98.5%</div>
+                                <div class="stat-widget-subtext">Class Probability Max</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon warn">
+                                <i class="fa-solid fa-wave-square"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Isolation Anomaly Score</div>
+                                <div class="stat-widget-value font-mono text-warning" id="threats-anomaly-val">0.12</div>
+                                <div class="stat-widget-subtext">Isolation Forest Detector</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <!-- Class Probabilities Meter -->
+                    <div class="col-lg-5">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-chart-pie text-primary"></i>
+                                    <span>Multi-Class Probability Distribution</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between small mb-1">
+                                        <span class="text-success fw-bold">Benign</span>
+                                        <span class="font-mono text-light" id="prob-benign-pct">98.5%</span>
+                                    </div>
+                                    <div class="progress bg-dark" style="height: 10px;">
+                                        <div class="progress-bar bg-success" id="prob-benign-bar" style="width: 98.5%;"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between small mb-1">
+                                        <span class="text-warning fw-bold">Suspicious</span>
+                                        <span class="font-mono text-light" id="prob-suspicious-pct">1.5%</span>
+                                    </div>
+                                    <div class="progress bg-dark" style="height: 10px;">
+                                        <div class="progress-bar bg-warning" id="prob-suspicious-bar" style="width: 1.5%;"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between small mb-1">
+                                        <span class="text-danger fw-bold">Malicious</span>
+                                        <span class="font-mono text-light" id="prob-malicious-pct">0.0%</span>
+                                    </div>
+                                    <div class="progress bg-dark" style="height: 10px;">
+                                        <div class="progress-bar bg-danger" id="prob-malicious-bar" style="width: 0.0%;"></div>
+                                    </div>
+                                </div>
+                                <div class="bg-input p-3 rounded border border-subtle small text-muted">
+                                    <i class="fa-solid fa-circle-info text-info me-1"></i>
+                                    <b>Threat Score Formulation:</b>
+                                    <div class="font-mono mt-1 text-light">T = 0.50*P(Suspicious) + 1.00*P(Malicious) + 0.10*AnomalyScore</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ingested Telemetry Features Table -->
+                    <div class="col-lg-7">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-list-check text-info"></i>
+                                    <span>Ingested Telemetry Feature Vector (CICIDS-2017 Schema)</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body p-0" style="max-height: 280px; overflow-y: auto;">
+                                <table class="soc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature Attribute</th>
+                                            <th>Observed Telemetry Value</th>
+                                            <th>Telemetry Normalization Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="threats-telemetry-tbody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 4. ADAPTIVE RISK ENGINE SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-risk">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Module 3: Dynamic Risk & Deterministic Adaptive Policy</h5>
+                    <p class="text-muted small mb-0">
+                        Observes changing security context and automatically adapts the risk weights $w_i$. Evaluates composite risk $R = w_U U + w_D D + w_N N + w_B B + w_T T$ with $\sum w_i = 1.00$.
+                    </p>
+                </div>
+
+                <!-- Equation Banner -->
+                <div class="equation-box d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <span class="text-muted">RISK FORMULATION:</span>
+                        <span class="text-info fw-bold ms-2" id="risk-formula-text">R = 0.15*U + 0.15*D + 0.20*N + 0.20*B + 0.30*T</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="text-muted extra-small">CURRENT RISK SCORE:</span>
+                        <span class="badge-soc safe fs-6 font-mono" id="risk-composite-badge">R = 0.050 (LOW)</span>
+                    </div>
+                </div>
+
+                <!-- Adaptive Policy Engine Panel -->
+                <div class="soc-card mb-4 border-info">
+                    <div class="soc-card-header bg-info bg-opacity-10 border-info border-opacity-25">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-brain text-info"></i>
+                            <span>Adaptive Policy Engine: Detected Context & Autonomous Weight Adaptation</span>
+                        </div>
+                        <span class="badge-soc info" id="policy-context-badge">Normal Enterprise Activity</span>
+                    </div>
+                    <div class="soc-card-body">
+                        <div class="row g-4">
+                            <!-- Left: Factors & Rationale -->
+                            <div class="col-lg-6">
+                                <h6 class="text-light fw-bold small mb-2"><i class="fa-solid fa-magnifying-glass text-warning me-1"></i> Detected Context Factors:</h6>
+                                <ul class="list-unstyled small text-muted mb-3" id="policy-trigger-factors-list">
+                                    <li><i class="fa-solid fa-check text-success me-2"></i>All telemetry signals within nominal operational thresholds</li>
+                                    <li><i class="fa-solid fa-check text-success me-2"></i>High endpoint device trust score (0.98)</li>
+                                </ul>
+
+                                <h6 class="text-light fw-bold small mb-2"><i class="fa-solid fa-comment-dots text-info me-1"></i> Why Did the Policy Adapt?</h6>
+                                <div class="bg-input p-3 rounded border border-subtle small text-light" id="policy-adaptation-reason">
+                                    Standard operational baseline: Balanced weighting across user, device, network, behavioural posture, and threat priors.
+                                </div>
+                            </div>
+
+                            <!-- Right: Baseline vs Adaptive Weight Comparison -->
+                            <div class="col-lg-6">
+                                <h6 class="text-light fw-bold small mb-2"><i class="fa-solid fa-arrows-left-right text-primary me-1"></i> Baseline Policy vs Adaptive Policy Shift:</h6>
+                                <table class="soc-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Component</th>
+                                            <th>Baseline Weight</th>
+                                            <th>Adaptive Weight</th>
+                                            <th>Shift Delta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="policy-weights-comparison-tbody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Risk Breakdown Table -->
+                <div class="soc-card">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-table-cells text-warning"></i>
+                            <span>Live Multi-Dimensional Risk Component Breakdown</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body p-0">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Risk Dimension</th>
+                                    <th>Symbol</th>
+                                    <th>Normalized Score (0.00 – 1.00)</th>
+                                    <th>Current Adaptive Weight</th>
+                                    <th>Individual Additive Contribution</th>
+                                </tr>
+                            </thead>
+                            <tbody id="risk-components-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-card-header fw-bold">
+                                    <td colspan="4" class="text-end text-light">COMPOSITE DYNAMIC RISK (R):</td>
+                                    <td class="font-mono text-info fs-6" id="risk-table-total-val">0.0500</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 5. ZERO-TRUST ACCESS SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-zerotrust">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Module 3: Adaptive Zero-Trust Access Controller</h5>
+                    <p class="text-muted small mb-0">
+                        Dynamic Zero-Trust access authorization where the evaluated risk score $R$ maps into continuous policy enforcement tiers, dynamically shaping effective permissions.
+                    </p>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <!-- Access Policy Decision Card -->
+                    <div class="col-lg-6">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-shield text-success"></i>
+                                    <span>Evaluated Zero-Trust Access Tier</span>
+                                </div>
+                                <span class="badge-soc safe fs-6" id="zt-decision-badge">ALLOW</span>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="mb-3">
+                                    <span class="text-muted extra-small">ENFORCED ACTION POLICY:</span>
+                                    <div class="fw-bold font-mono text-info fs-5" id="zt-policy-action-name">FULL_ACCESS</div>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted extra-small">PRIMARY RISK FACTOR:</span>
+                                    <div class="fw-bold text-light" id="zt-primary-driver">threat_score (T) (score: 0.05)</div>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted extra-small">DECISION EXPLANATION:</span>
+                                    <div class="bg-input p-3 rounded border border-subtle small text-light" id="zt-explanation-text">
+                                        Risk is within safe baseline. Full access granted to authorized cloud resources.
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="text-muted extra-small">ENFORCED RESTRICTIONS:</span>
+                                    <ul class="list-unstyled small text-warning mt-1" id="zt-restrictions-list">
+                                        <li><i class="fa-solid fa-minus me-2"></i>No active restrictions (Standard baseline operations)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Policy Spectrum Scale -->
+                    <div class="col-lg-6">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-ruler-horizontal text-info"></i>
+                                    <span>Zero-Trust Risk Spectrum & Threshold Policies</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="mb-3 p-2 rounded bg-dark border border-subtle d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <b class="text-success">ALLOW</b> (0.00 &le; R &lt; 0.30)
+                                        <div class="extra-small text-muted">Full access to assigned permissions</div>
+                                    </div>
+                                    <span class="badge-soc safe">0.00 – 0.30</span>
+                                </div>
+                                <div class="mb-3 p-2 rounded bg-dark border border-subtle d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <b class="text-warning">ALLOW + MONITOR</b> (0.30 &le; R &lt; 0.60)
+                                        <div class="extra-small text-muted">Enhanced audit logging & step-up MFA</div>
+                                    </div>
+                                    <span class="badge-soc warn">0.30 – 0.60</span>
+                                </div>
+                                <div class="mb-3 p-2 rounded bg-dark border border-subtle d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <b class="text-danger">RESTRICT</b> (0.60 &le; R &lt; 0.80)
+                                        <div class="extra-small text-muted">Read-only least privilege; mutations revoked</div>
+                                    </div>
+                                    <span class="badge-soc danger">0.60 – 0.80</span>
+                                </div>
+                                <div class="mb-3 p-2 rounded bg-dark border border-subtle d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <b class="text-danger">ISOLATE</b> (0.80 &le; R &lt; 0.90)
+                                        <div class="extra-small text-muted">Quarantine in network sandbox</div>
+                                    </div>
+                                    <span class="badge-soc danger">0.80 – 0.90</span>
+                                </div>
+                                <div class="p-2 rounded bg-dark border border-subtle d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <b class="text-danger">BLOCK + RESPONSE</b> (0.90 &le; R &le; 1.00)
+                                        <div class="extra-small text-muted">Immediate session termination & IP firewall block</div>
+                                    </div>
+                                    <span class="badge-soc danger">0.90 – 1.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assigned vs Effective Permissions Detailed Matrix -->
+                <div class="soc-card">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-user-lock text-primary"></i>
+                            <span>Assigned vs Effective Permissions Matrix</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body p-0">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Permission</th>
+                                    <th>Description</th>
+                                    <th>Sensitivity Tier</th>
+                                    <th>Assigned in Baseline</th>
+                                    <th>Effective Status</th>
+                                    <th>Zero-Trust Enforcement Rationale</th>
+                                </tr>
+                            </thead>
+                            <tbody id="zt-permissions-matrix-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 6. RESPONSE & SAFETY SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-response">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Module 4: Safety-Constrained Autonomous Response</h5>
+                    <p class="text-muted small mb-0">
+                        Interposes a <b>Safety Control Plane</b> between AI mitigation propositions and cloud infrastructure to prevent harmful blast radius and enforce human-in-the-loop sign-off on high-impact actions.
+                    </p>
+                </div>
+
+                <!-- Latest Proposed Defense Action Summary -->
+                <div class="soc-card mb-4">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-shield-virus text-danger"></i>
+                            <span>Candidate Tactical Defense Action Evaluation</span>
+                        </div>
+                        <span class="badge-soc safe" id="response-status-badge">NO INTERVENTION NEEDED</span>
+                    </div>
+                    <div class="soc-card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <span class="text-muted extra-small">PROPOSED ACTION:</span>
+                                <div class="fw-bold font-mono text-info fs-5" id="response-proposed-action">NO_ACTION</div>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-muted extra-small">EVALUATED BLAST RADIUS:</span>
+                                <div class="fw-bold text-light" id="response-impact-val">LOW</div>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-muted extra-small">SAFETY DECISION:</span>
+                                <div class="fw-bold text-success" id="response-safety-decision">EXECUTE</div>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-muted extra-small">TARGET ENTITY:</span>
+                                <div class="font-mono text-light" id="response-target-entity">Nominal Traffic</div>
+                            </div>
+                        </div>
+                        <div class="bg-input p-3 rounded border border-subtle small text-light mt-3" id="response-safety-rationale">
+                            Activity deemed safe; no automated intervention required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Human-in-the-Loop Operator Authorization Queue -->
+                <div class="soc-card mb-4 border-warning">
+                    <div class="soc-card-header bg-warning bg-opacity-10 border-warning border-opacity-25">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-user-check text-warning"></i>
+                            <span>Human-in-the-Loop Operator Authorization Queue (Pending High-Impact Interventions)</span>
+                        </div>
+                        <span class="badge-soc warn font-mono" id="response-pending-count-badge">0 PENDING</span>
+                    </div>
+                    <div class="soc-card-body">
+                        <div id="response-pending-approvals-list">
+                            <div class="text-muted small py-3 text-center">No high-impact actions currently pending operator authorization.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Response Execution Audit Log -->
+                <div class="soc-card">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-clock-rotate-left text-info"></i>
+                            <span>Mitigation & Safety Guardrail Execution History</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body p-0">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Action ID</th>
+                                    <th>Proposed Action</th>
+                                    <th>Target Asset</th>
+                                    <th>Safety Gate Decision</th>
+                                    <th>Latency</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="response-history-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 7. SELF-HEALING & RESILIENCE SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-healing">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Module 5: Autonomous Self-Healing & Cloud Resilience</h5>
+                    <p class="text-muted small mb-0">
+                        Executes simulated 5-phase post-containment recovery pipelines to automatically restore compromised cloud microservices without human downtime.
+                    </p>
+                </div>
+
+                <!-- Recovery KPI Metrics -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon safe">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Successful Recoveries</div>
+                                <div class="stat-widget-value text-success" id="healing-success-count">0</div>
+                                <div class="stat-widget-subtext">100% Recovery Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon info">
+                                <i class="fa-solid fa-stopwatch"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Mean Time to Recovery (MTTR)</div>
+                                <div class="stat-widget-value font-mono text-info" id="healing-avg-mttr">1.42s</div>
+                                <div class="stat-widget-subtext">Simulated Recovery Loop</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-widget">
+                            <div class="stat-widget-icon warn">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <div>
+                                <div class="stat-widget-label">Health Verification Score</div>
+                                <div class="stat-widget-value font-mono text-warning" id="healing-latest-health">0.985</div>
+                                <div class="stat-widget-subtext">Synthetic Probe Pass Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <!-- 5-Phase Recovery State Machine Visualizer -->
+                    <div class="col-lg-7">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-diagram-project text-success"></i>
+                                    <span>5-Phase Autonomous Recovery State Machine</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="healing-timeline" id="healing-timeline-container">
+                                    <div class="healing-timeline-step">
+                                        <div class="healing-step-bullet completed"><i class="fa-solid fa-check text-dark" style="font-size: 9px;"></i></div>
+                                        <div class="healing-step-title">Phase 1: Isolation & Container Quarantine</div>
+                                        <div class="healing-step-desc text-muted">Compromised pods isolated from VPC mesh and service ingress.</div>
+                                    </div>
+                                    <div class="healing-timeline-step">
+                                        <div class="healing-step-bullet completed"><i class="fa-solid fa-check text-dark" style="font-size: 9px;"></i></div>
+                                        <div class="healing-step-title">Phase 2: Golden Image Replica Provisioning</div>
+                                        <div class="healing-step-desc text-muted">Clean immutable replica container spawned in isolated pool.</div>
+                                    </div>
+                                    <div class="healing-timeline-step">
+                                        <div class="healing-step-bullet completed"><i class="fa-solid fa-check text-dark" style="font-size: 9px;"></i></div>
+                                        <div class="healing-step-title">Phase 3: Load Balancer Ingress Switchover</div>
+                                        <div class="healing-step-desc text-muted">Target groups and proxy routes switched to healthy replica instance.</div>
+                                    </div>
+                                    <div class="healing-timeline-step">
+                                        <div class="healing-step-bullet completed"><i class="fa-solid fa-check text-dark" style="font-size: 9px;"></i></div>
+                                        <div class="healing-step-title">Phase 4: Automated Synthetic Health Verification</div>
+                                        <div class="healing-step-desc text-muted">Deep HTTP synthetics and database connection probes validated.</div>
+                                    </div>
+                                    <div class="healing-timeline-step">
+                                        <div class="healing-step-bullet completed"><i class="fa-solid fa-check text-dark" style="font-size: 9px;"></i></div>
+                                        <div class="healing-step-title">Phase 5: Production Restored & Loop Closed</div>
+                                        <div class="healing-step-desc text-muted">Service reintegrated into production rotation; incident feedback recorded.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Microservice Recovery Tester -->
+                    <div class="col-lg-5">
+                        <div class="soc-card h-100">
+                            <div class="soc-card-header">
+                                <div class="soc-card-title">
+                                    <i class="fa-solid fa-vial-virus text-warning"></i>
+                                    <span>Simulate Microservice Recovery Pipeline</span>
+                                </div>
+                            </div>
+                            <div class="soc-card-body">
+                                <div class="mb-3">
+                                    <label class="soc-label">Select Compromised Microservice:</label>
+                                    <select class="soc-select" id="healing-select-service">
+                                        <option value="svc-auth">Authentication Microservice (svc-auth)</option>
+                                        <option value="svc-api">API Gateway (svc-api)</option>
+                                        <option value="svc-pay">Payment Processing Engine (svc-pay)</option>
+                                        <option value="svc-db">Cloud SQL Database Cluster (svc-db)</option>
+                                        <option value="svc-storage">Object Storage Service (svc-storage)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="soc-label">Attack Vector Simulation:</label>
+                                    <select class="soc-select" id="healing-select-attack">
+                                        <option value="Infiltration_Compromise">Container Infiltration & Privilege Escalation</option>
+                                        <option value="SQLi_Cluster_Disruption">SQL Injection Attack Disruption</option>
+                                        <option value="API_Gateway_Memory_Exhaustion">Denial-of-Service Memory Exhaustion</option>
+                                    </select>
+                                </div>
+                                <button class="soc-btn soc-btn-success w-100 py-2 mb-3" id="btn-trigger-self-healing">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>TRIGGER RECOVERY SIMULATION</span>
+                                </button>
+                                <div class="extra-small text-muted">
+                                    <i class="fa-solid fa-circle-info me-1"></i>
+                                    Simulates container recreation, traffic redirection, and health checks within bounded prototype runtime.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recovery Audit History Table -->
+                <div class="soc-card">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-clipboard-list text-info"></i>
+                            <span>Self-Healing Recovery Audit Records</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body p-0">
+                        <table class="soc-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Recovery ID</th>
+                                    <th>Microservice</th>
+                                    <th>Triggering Attack</th>
+                                    <th>Restored Instance</th>
+                                    <th>MTTR</th>
+                                    <th>Health Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="healing-history-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 8. RESEARCH SCENARIOS & EVALUATION SCREEN -->
+            <!-- ========================================================= -->
+            <div class="app-view" id="view-research">
+                <div class="mb-3">
+                    <h5 class="fw-bold text-light mb-1">Academic Research Demonstration & Evaluation Suite</h5>
+                    <p class="text-muted small mb-0">
+                        1-Click reproducible research scenarios, generated publication figures, and benchmark evaluation tables.
+                    </p>
+                </div>
+
+                <!-- 5 Research Demonstration Scenarios -->
+                <div class="soc-card mb-4">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-play text-warning"></i>
+                            <span>5 Research Demonstration Scenarios (1-Click Pipeline Execution)</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-4">
+                                <button class="scenario-card-btn" data-scenario="1">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="badge-soc safe">Scenario 1</span>
+                                        <span class="text-muted extra-small">Alice Chen</span>
+                                    </div>
+                                    <div class="fw-bold text-light mb-1">Normal Enterprise User</div>
+                                    <div class="extra-small text-muted">Low Threat &rarr; Baseline Weights &rarr; ALLOW &rarr; Full Permissions</div>
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <button class="scenario-card-btn" data-scenario="2">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="badge-soc warn">Scenario 2</span>
+                                        <span class="text-muted extra-small">Carol Danvers</span>
+                                    </div>
+                                    <div class="fw-bold text-light mb-1">Suspicious Authentication Probes</div>
+                                    <div class="extra-small text-muted">8 Failed Logins &rarr; Policy shifts User Risk to 30% &rarr; RESTRICT</div>
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <button class="scenario-card-btn" data-scenario="3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="badge-soc danger">Scenario 3</span>
+                                        <span class="text-muted extra-small">Eve Adams</span>
+                                    </div>
+                                    <div class="fw-bold text-light mb-1">Volumetric DDoS SYN Flood</div>
+                                    <div class="extra-small text-muted">650 SYN Flags &rarr; Policy shifts Network to 40% &rarr; BLOCK_IP</div>
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <button class="scenario-card-btn" data-scenario="4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="badge-soc danger">Scenario 4</span>
+                                        <span class="text-muted extra-small">Bob Vance</span>
+                                    </div>
+                                    <div class="fw-bold text-light mb-1">SQLi & Mass Data Exfiltration</div>
+                                    <div class="extra-small text-muted">750MB Egress &rarr; Policy shifts Behaviour to 40% &rarr; ISOLATE</div>
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <button class="scenario-card-btn" data-scenario="5">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="badge-soc warn">Scenario 5</span>
+                                        <span class="text-muted extra-small">Dan Miller</span>
+                                    </div>
+                                    <div class="fw-bold text-light mb-1">High-Impact Action & Safety Gate</div>
+                                    <div class="extra-small text-muted">AI Proposes ISOLATE_SERVICE &rarr; Safety Gate Queues Approval</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Scenario Trace Output -->
+                        <div class="bg-input p-3 rounded border border-subtle mt-3 d-none" id="scenario-trace-panel">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold text-info" id="scenario-trace-title">Scenario Output</span>
+                                <span class="badge-soc safe" id="scenario-trace-badge">COMPLETED</span>
+                            </div>
+                            <div class="font-mono extra-small text-light" id="scenario-trace-content">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Matplotlib Analytics -->
+                <div class="soc-card mb-4">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-chart-line text-info"></i>
+                            <span>Graphs & Analytics — Matplotlib</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-info"
+                                id="refresh-analytics-charts">
+                            Refresh graphs
+                        </button>
+                    </div>
+                    <div class="soc-card-body">
+                        <p class="text-muted small">
+                            Generated from stored AARC telemetry and CloudTrail data.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6 col-xxl-4">
+                                <h6>CloudTrail Risk Distribution</h6>
+                                <img class="img-fluid rounded analytics-chart"
+                                     style="width:100%; max-height:230px; object-fit:contain; background:#fff; padding:8px;"
+                                     data-chart="risk"
+                                     src="/api/analytics/chart/risk.png"
+                                     alt="CloudTrail risk distribution chart">
+                            </div>
+                            <div class="col-12 col-md-6 col-xxl-4">
+                                <h6>CPU and Memory Trends</h6>
+                                <img class="img-fluid rounded analytics-chart"
+                                     style="width:100%; max-height:230px; object-fit:contain; background:#fff; padding:8px;"
+                                     data-chart="telemetry"
+                                     src="/api/analytics/chart/telemetry.png"
+                                     alt="CPU and memory telemetry trend chart">
+                            </div>
+                            <div class="col-12 col-md-6 col-xxl-4">
+                                <h6>Most Frequent AWS Events</h6>
+                                <img class="img-fluid rounded analytics-chart"
+                                     style="width:100%; max-height:230px; object-fit:contain; background:#fff; padding:8px;"
+                                     data-chart="events"
+                                     src="/api/analytics/chart/events.png"
+                                     alt="Most frequent CloudTrail event chart">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Figures & Tables Gallery -->
+                <div class="soc-card">
+                    <div class="soc-card-header">
+                        <div class="soc-card-title">
+                            <i class="fa-solid fa-file-lines text-info"></i>
+                            <span>Publication Figures & Evaluation Tables</span>
+                        </div>
+                    </div>
+                    <div class="soc-card-body">
+                        <div class="row g-3" id="research-figures-grid">
+                            <!-- Populated dynamically with figure cards -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AARC Frontend Controller Script -->
+<script src="/static/js/app.js"></script>
+
+</body>
+</html>

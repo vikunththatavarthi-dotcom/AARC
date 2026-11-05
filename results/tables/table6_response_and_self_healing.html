@@ -1,0 +1,61 @@
+<h4>Table 6: Autonomous Response and Self-Healing Resilience Metrics</h4>
+<table border="1" class="dataframe table table-striped table-hover table-bordered table-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Target Cloud Service</th>
+      <th>Attack Scenario</th>
+      <th>Containment Action</th>
+      <th>Self-Healing Action</th>
+      <th>MTTR (s)</th>
+      <th>Health Verification Score</th>
+      <th>Recovery Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Authentication Microservice</td>
+      <td>DDoS SYN Flood</td>
+      <td>BLOCK_IP &amp; RATE_LIMIT</td>
+      <td>Golden Image Replica Spawn</td>
+      <td>1.42s</td>
+      <td>0.99 (Passed)</td>
+      <td>SUCCESS</td>
+    </tr>
+    <tr>
+      <td>API Gateway</td>
+      <td>Anomalous Burst Probe</td>
+      <td>RESTRICT_API (Scoped)</td>
+      <td>Routing Table Update</td>
+      <td>1.15s</td>
+      <td>0.98 (Passed)</td>
+      <td>SUCCESS</td>
+    </tr>
+    <tr>
+      <td>Payment Processing Engine</td>
+      <td>SSH BruteForce Intrusion</td>
+      <td>REVOKE_SESSION &amp; ISOLATE</td>
+      <td>Container Rebuild &amp; Key Rotation</td>
+      <td>1.88s</td>
+      <td>1.00 (Passed)</td>
+      <td>SUCCESS</td>
+    </tr>
+    <tr>
+      <td>Cloud SQL Database Cluster</td>
+      <td>SQLi Data Exfiltration</td>
+      <td>ISOLATE_SERVICE (Approval)</td>
+      <td>Failover to Read-Replica</td>
+      <td>2.10s</td>
+      <td>0.97 (Passed)</td>
+      <td>SUCCESS</td>
+    </tr>
+    <tr>
+      <td>Object Storage Service</td>
+      <td>Infiltration &amp; API Abuse</td>
+      <td>REVOKE_ACCESS &amp; ROLLBACK</td>
+      <td>Config State Reconciliation</td>
+      <td>1.65s</td>
+      <td>0.99 (Passed)</td>
+      <td>SUCCESS</td>
+    </tr>
+  </tbody>
+</table>

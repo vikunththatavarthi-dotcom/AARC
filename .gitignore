@@ -1,0 +1,60 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+credentials
+
+# Databases and runtime files
+*.db
+*.sqlite
+*.sqlite3
+logs/
+*.log
+
+# Large datasets
+datasets/
+data/
+*.csv
+*.pcap
+*.parquet
+
+# Backups and temporary files
+*.bak
+*.bak*
+.DS_Store
+
+# Temporary backups
+*.backup*
+*.bak
+*.bak*
+*.pre-*
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Keep generated research results
+!results/
+!results/**/*.csv
+!results/**/*.json
+!results/**/*.png
+!results/**/*.html
+!results/**/*.md
+
+# Local app backups
+app.py.backup*
+app.py.pre-*
+
+# Historical backups
+*.before-*
+results/**/*backup*
+results/figure_backups/

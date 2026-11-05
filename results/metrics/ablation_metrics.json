@@ -1,0 +1,79 @@
+[
+    {
+        "experiment_id": "Exp A",
+        "configuration": "Full AARC Model (Proposed)",
+        "description": "Integrated pipeline: RF + Isolation Forest + Dynamic Risk + Zero-Trust + Safety + Self-Healing",
+        "detection_f1": 1.0,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.799,
+        "mttc_sec": 0.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 98.4
+    },
+    {
+        "experiment_id": "Exp B",
+        "configuration": "AARC w/o Dynamic Risk Engine",
+        "description": "Static threshold on raw threat score; no environmental context",
+        "detection_f1": 1.0,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 1.0,
+        "mttc_sec": 0.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 82.1
+    },
+    {
+        "experiment_id": "Exp C",
+        "configuration": "AARC w/o Behaviour Risk (w4=0)",
+        "description": "Excludes runtime behavioural metrics (API bursts, CPU/RAM patterns)",
+        "detection_f1": 0.965,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.791,
+        "mttc_sec": 0.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 89.6
+    },
+    {
+        "experiment_id": "Exp D",
+        "configuration": "AARC w/o Threat Score (w5=0)",
+        "description": "Heuristic risk engine only; no AI threat detection model",
+        "detection_f1": 0.74,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.773,
+        "mttc_sec": 0.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 71.5
+    },
+    {
+        "experiment_id": "Exp E",
+        "configuration": "AARC w/o Adaptive Zero-Trust",
+        "description": "Static perimeter security model without granular dynamic policy tiers",
+        "detection_f1": 1.0,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.7031,
+        "mttc_sec": 0.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 78.2
+    },
+    {
+        "experiment_id": "Exp F",
+        "configuration": "AARC w/o Autonomous Response",
+        "description": "Manual alert dispatch to human SOC queue without automated response",
+        "detection_f1": 1.0,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.799,
+        "mttc_sec": 420.0,
+        "mttr_sec": 0.9,
+        "resilience_score": 64.0
+    },
+    {
+        "experiment_id": "Exp G",
+        "configuration": "AARC w/o Feedback/Self-Healing",
+        "description": "No automated service reconstruction or dynamic parameter feedback",
+        "detection_f1": 0.95,
+        "false_positive_rate": 0.0,
+        "access_decision_accuracy": 0.799,
+        "mttc_sec": 0.0,
+        "mttr_sec": 950.0,
+        "resilience_score": 58.5
+    }
+]

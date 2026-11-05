@@ -1,0 +1,229 @@
+{
+  "dataset": "ToN_IoT network 100K unique-row subset",
+  "evaluation": "5-fold StratifiedGroupKFold by src_ip",
+  "records": 100000,
+  "source_hosts": 51,
+  "decision_mapping": {
+    "attack": [
+      "RESTRICT",
+      "ISOLATE",
+      "BLOCK + RESPONSE"
+    ],
+    "non_blocking": [
+      "ALLOW",
+      "ALLOW + MONITOR"
+    ]
+  },
+  "telemetry_note": "Unavailable user/device/application context uses documented defaults. Ground-truth labels are never passed into the AARC pipeline.",
+  "zero_trust_enforcement_pooled_oof": {
+    "accuracy": 0.94658,
+    "precision_macro": 0.9288588480053093,
+    "recall_macro": 0.9183103726498061,
+    "f1_macro": 0.9234363311033842,
+    "balanced_accuracy": 0.9183103726498061,
+    "roc_auc": 0.9150374264316022,
+    "false_positive_rate": 0.1338572364112639,
+    "false_negative_rate": 0.02952201828912381,
+    "confusion_matrix": [
+      [
+        19839,
+        3066
+      ],
+      [
+        2276,
+        74819
+      ]
+    ]
+  },
+  "zero_trust_monitoring_alert_pooled_oof": {
+    "accuracy": 0.92903,
+    "precision_macro": 0.9549395519045472,
+    "recall_macro": 0.8467806546888551,
+    "f1_macro": 0.8868294440748391,
+    "balanced_accuracy": 0.8467806546888551,
+    "roc_auc": 0.9150374264316022,
+    "false_positive_rate": 0.3049989085352543,
+    "false_negative_rate": 0.0014397820870354757,
+    "confusion_matrix": [
+      [
+        15919,
+        6986
+      ],
+      [
+        111,
+        76984
+      ]
+    ]
+  },
+  "risk_score_ranking": {
+    "roc_auc": 0.9150374264316022,
+    "average_precision": 0.9615393167819841,
+    "normal_mean_risk": 0.31897634577603146,
+    "attack_mean_risk": 0.7684461197224204
+  },
+  "random_forest_pooled_oof": {
+    "accuracy": 0.96563,
+    "precision_macro": 0.9737732321955813,
+    "recall_macro": 0.9288546922557139,
+    "f1_macro": 0.9489846760043616,
+    "confusion_matrix": [
+      [
+        19721,
+        3184
+      ],
+      [
+        253,
+        76842
+      ]
+    ]
+  },
+  "zero_trust_decisions": {
+    "RESTRICT": 35738,
+    "ISOLATE": 24748,
+    "BLOCK + RESPONSE": 17399,
+    "ALLOW": 16030,
+    "ALLOW + MONITOR": 6085
+  },
+  "adaptive_policy_contexts": {
+    "DDOS_NETWORK_FLOOD": 43331,
+    "NORMAL_BASELINE": 56596,
+    "DATA_EXFILTRATION_SQLI": 73
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_records": 55959,
+      "test_records": 44041,
+      "test_hosts": 8,
+      "host_overlap": 0,
+      "aarc": {
+        "accuracy": 0.9858540905065735,
+        "precision_macro": 0.9383305259874997,
+        "recall_macro": 0.9919372955657091,
+        "f1_macro": 0.9630927251136956,
+        "balanced_accuracy": 0.9919372955657091,
+        "roc_auc": 0.9989450137486964,
+        "false_positive_rate": 0.0004526935264825713,
+        "false_negative_rate": 0.015672715342099287,
+        "confusion_matrix": [
+          [
+            4416,
+            2
+          ],
+          [
+            621,
+            39002
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 2,
+      "train_records": 72913,
+      "test_records": 27087,
+      "test_hosts": 9,
+      "host_overlap": 0,
+      "aarc": {
+        "accuracy": 0.9144977295381548,
+        "precision_macro": 0.9036358662139522,
+        "recall_macro": 0.7643572902989304,
+        "f1_macro": 0.8121670304748541,
+        "balanced_accuracy": 0.7643572902989304,
+        "roc_auc": 0.7469705187421062,
+        "false_positive_rate": 0.4582766439909297,
+        "false_negative_rate": 0.013008775411209596,
+        "confusion_matrix": [
+          [
+            2389,
+            2021
+          ],
+          [
+            295,
+            22382
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 3,
+      "train_records": 94401,
+      "test_records": 5599,
+      "test_hosts": 17,
+      "host_overlap": 0,
+      "aarc": {
+        "accuracy": 0.9310591176995893,
+        "precision_macro": 0.879361168433489,
+        "recall_macro": 0.9375696696050365,
+        "f1_macro": 0.9035289464850698,
+        "balanced_accuracy": 0.9375696696050365,
+        "roc_auc": 0.9280587319109742,
+        "false_positive_rate": 0.07362240289069558,
+        "false_negative_rate": 0.05123825789923143,
+        "confusion_matrix": [
+          [
+            4102,
+            326
+          ],
+          [
+            60,
+            1111
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 4,
+      "train_records": 82676,
+      "test_records": 17324,
+      "test_hosts": 4,
+      "host_overlap": 0,
+      "aarc": {
+        "accuracy": 0.9341953359501269,
+        "precision_macro": 0.9110006375557789,
+        "recall_macro": 0.948219085810949,
+        "f1_macro": 0.9255216759084628,
+        "balanced_accuracy": 0.948219085810949,
+        "roc_auc": 0.9891706433018816,
+        "false_positive_rate": 0.016468785905783226,
+        "false_negative_rate": 0.08709304247231862,
+        "confusion_matrix": [
+          [
+            5136,
+            86
+          ],
+          [
+            1054,
+            11048
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 5,
+      "train_records": 94051,
+      "test_records": 5949,
+      "test_hosts": 13,
+      "host_overlap": 0,
+      "aarc": {
+        "accuracy": 0.8525802655908556,
+        "precision_macro": 0.8041264156871983,
+        "recall_macro": 0.8479180586693706,
+        "f1_macro": 0.8203430823361038,
+        "balanced_accuracy": 0.8479180586693706,
+        "roc_auc": 0.8698540671610446,
+        "false_positive_rate": 0.14253444770725096,
+        "false_negative_rate": 0.1616294349540079,
+        "confusion_matrix": [
+          [
+            3796,
+            631
+          ],
+          [
+            246,
+            1276
+          ]
+        ]
+      }
+    }
+  ]
+}

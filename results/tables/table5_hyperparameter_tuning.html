@@ -1,0 +1,43 @@
+<h4>Table 5: Random Forest 5-Fold Cross-Validation Hyperparameter Tuning</h4>
+<table border="1" class="dataframe table table-striped table-hover table-bordered table-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Hyperparameter</th>
+      <th>Search Space / Grid Values</th>
+      <th>Optimal Value Found</th>
+      <th>Validation Score (F1 Macro)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>n_estimators</td>
+      <td>[50, 100, 150]</td>
+      <td>50</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <td>max_depth</td>
+      <td>[10, 20, 30]</td>
+      <td>10</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <td>min_samples_split</td>
+      <td>[2, 5]</td>
+      <td>2</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <td>min_samples_leaf</td>
+      <td>[1, 2]</td>
+      <td>1</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <td>max_features</td>
+      <td>['sqrt', 'log2']</td>
+      <td>sqrt</td>
+      <td>1.0000</td>
+    </tr>
+  </tbody>
+</table>

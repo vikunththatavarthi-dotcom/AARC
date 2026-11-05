@@ -1,0 +1,87 @@
+<h4>Table 4: Ablation Study Across 7 Architectural Configurations</h4>
+<table border="1" class="dataframe table table-striped table-hover table-bordered table-sm">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Experiment</th>
+      <th>Configuration Description</th>
+      <th>Detection F1 (%)</th>
+      <th>FPR (%)</th>
+      <th>Decision Acc (%)</th>
+      <th>MTTC (s)</th>
+      <th>MTTR (s)</th>
+      <th>Resilience (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Exp A</td>
+      <td>Full AARC Model (Proposed)</td>
+      <td>100.00%</td>
+      <td>0.00%</td>
+      <td>78.30%</td>
+      <td>0.000s</td>
+      <td>0.90s</td>
+      <td>98.4%</td>
+    </tr>
+    <tr>
+      <td>Exp B</td>
+      <td>AARC w/o Dynamic Risk Engine</td>
+      <td>100.00%</td>
+      <td>0.00%</td>
+      <td>100.00%</td>
+      <td>0.000s</td>
+      <td>0.90s</td>
+      <td>82.1%</td>
+    </tr>
+    <tr>
+      <td>Exp C</td>
+      <td>AARC w/o Behaviour Risk (w4=0)</td>
+      <td>96.50%</td>
+      <td>0.00%</td>
+      <td>80.80%</td>
+      <td>0.000s</td>
+      <td>0.90s</td>
+      <td>89.6%</td>
+    </tr>
+    <tr>
+      <td>Exp D</td>
+      <td>AARC w/o Threat Score (w5=0)</td>
+      <td>74.00%</td>
+      <td>0.00%</td>
+      <td>77.30%</td>
+      <td>0.000s</td>
+      <td>0.90s</td>
+      <td>71.5%</td>
+    </tr>
+    <tr>
+      <td>Exp E</td>
+      <td>AARC w/o Adaptive Zero-Trust</td>
+      <td>100.00%</td>
+      <td>0.00%</td>
+      <td>68.90%</td>
+      <td>0.000s</td>
+      <td>0.90s</td>
+      <td>78.2%</td>
+    </tr>
+    <tr>
+      <td>Exp F</td>
+      <td>AARC w/o Autonomous Response</td>
+      <td>100.00%</td>
+      <td>0.00%</td>
+      <td>78.30%</td>
+      <td>420.000s</td>
+      <td>0.90s</td>
+      <td>64.0%</td>
+    </tr>
+    <tr>
+      <td>Exp G</td>
+      <td>AARC w/o Feedback/Self-Healing</td>
+      <td>95.00%</td>
+      <td>0.00%</td>
+      <td>78.30%</td>
+      <td>0.000s</td>
+      <td>950.00s</td>
+      <td>58.5%</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,145 @@
+{
+  "dataset": "ToN_IoT network",
+  "records": 190187,
+  "conflicting_rows_removed": 287,
+  "training_records": 152149,
+  "testing_records": 38038,
+  "random_state": 42,
+  "test_size": 0.2,
+  "numeric_features": [
+    "duration",
+    "src_bytes",
+    "dst_bytes",
+    "missed_bytes",
+    "src_pkts",
+    "src_ip_bytes",
+    "dst_pkts",
+    "dst_ip_bytes",
+    "dns_qclass",
+    "dns_qtype",
+    "dns_rcode",
+    "http_request_body_len",
+    "http_response_body_len",
+    "http_status_code",
+    "total_bytes",
+    "total_packets",
+    "bytes_per_sec",
+    "packets_per_sec",
+    "avg_bytes_per_packet"
+  ],
+  "categorical_features": [
+    "dst_port",
+    "proto",
+    "service",
+    "conn_state",
+    "dns_AA",
+    "dns_RD",
+    "dns_RA",
+    "dns_rejected",
+    "ssl_version",
+    "ssl_resumed",
+    "ssl_established",
+    "http_method",
+    "http_version",
+    "weird_name",
+    "weird_notice"
+  ],
+  "results": [
+    {
+      "model": "logistic_regression",
+      "accuracy": 0.9955307850044692,
+      "precision_macro": 0.9925494644264026,
+      "recall_macro": 0.994482617036166,
+      "f1_macro": 0.9935120383761415,
+      "balanced_accuracy": 0.994482617036166,
+      "roc_auc": 0.9986873486217513,
+      "false_positive_rate": 0.007392392989149875,
+      "false_negative_rate": 0.003642372938518094,
+      "confusion_matrix": [
+        [
+          8325,
+          62
+        ],
+        [
+          108,
+          29543
+        ]
+      ],
+      "training_time_seconds": 3.9416395749431103,
+      "inference_batch_ms": 3.68058611638844,
+      "inference_ms_per_record": 9.676076861003312e-05
+    },
+    {
+      "model": "decision_tree",
+      "accuracy": 0.9968452600031548,
+      "precision_macro": 0.9954952630023592,
+      "recall_macro": 0.9953257589200822,
+      "f1_macro": 0.9954104804486623,
+      "balanced_accuracy": 0.9953257589200822,
+      "roc_auc": 0.9978942905922009,
+      "false_positive_rate": 0.007392392989149875,
+      "false_negative_rate": 0.001956089170685643,
+      "confusion_matrix": [
+        [
+          8325,
+          62
+        ],
+        [
+          58,
+          29593
+        ]
+      ],
+      "training_time_seconds": 1.1140052061527967,
+      "inference_batch_ms": 3.243732964619994,
+      "inference_ms_per_record": 8.527611768810122e-05
+    },
+    {
+      "model": "linear_svm",
+      "accuracy": 0.9956622325043377,
+      "precision_macro": 0.9930069528239953,
+      "recall_macro": 0.9943959182852984,
+      "f1_macro": 0.9936993722962494,
+      "balanced_accuracy": 0.9943959182852984,
+      "roc_auc": 0.9984305034969085,
+      "false_positive_rate": 0.007869321569095028,
+      "false_negative_rate": 0.0033388418603082525,
+      "confusion_matrix": [
+        [
+          8321,
+          66
+        ],
+        [
+          99,
+          29552
+        ]
+      ],
+      "training_time_seconds": 4.150637466926128,
+      "inference_batch_ms": 3.6026770249009132,
+      "inference_ms_per_record": 9.471257755141998e-05
+    },
+    {
+      "model": "random_forest",
+      "accuracy": 0.9946632315053368,
+      "precision_macro": 0.9912314178917787,
+      "recall_macro": 0.993284844870559,
+      "f1_macro": 0.9922535999194048,
+      "balanced_accuracy": 0.993284844870559,
+      "roc_auc": 0.9997916121603471,
+      "false_positive_rate": 0.0091808751639442,
+      "false_negative_rate": 0.004249435094937776,
+      "confusion_matrix": [
+        [
+          8310,
+          77
+        ],
+        [
+          126,
+          29525
+        ]
+      ],
+      "training_time_seconds": 4.4942852589301765,
+      "inference_batch_ms": 70.81731501966715,
+      "inference_ms_per_record": 0.0018617518013477876
+    }
+  ]
+}

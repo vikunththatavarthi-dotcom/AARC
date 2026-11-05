@@ -1,0 +1,11 @@
+Metric,Score,Raw Value
+Accuracy,100.00%,1.0
+Precision (Macro-Average),100.00%,1.0
+Precision (Weighted),100.00%,1.0
+Recall (Macro-Average),100.00%,1.0
+Recall (Weighted),100.00%,1.0
+F1-Score (Macro-Average),100.00%,1.0
+F1-Score (Weighted),100.00%,1.0
+ROC-AUC (One-vs-Rest),1.0000,1.0
+False Positive Rate (FPR),0.00%,0.0
+False Negative Rate (FNR),0.00%,0.0
